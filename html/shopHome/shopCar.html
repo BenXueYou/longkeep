@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+		<title>购物车</title>
+		<script type="text/javascript" src="../../JS/jquery-3.0.0.min.js" ></script>
+		<style>
+		*{
+			padding: 0;
+			margin: 0;
+			background-color: rgb(241,241,241);
+		}
+            button{
+			outline: none;
+		}
+		.top_menu{
+			/*background-color: cyan;*/
+		}
+			.top_menu_ul{
+				width: 98%;
+				background-color: white;
+			    margin: 0 auto;
+			    overflow: hidden;
+			}
+			
+			.top_menu li{
+				background-color: white;
+				list-style-type: none;
+				float: left;
+				line-height: 40px;
+				margin-left: 0.8%;
+				width: 24%;
+				color: gray;
+				font-size: 1.1em;
+				text-align: center;
+			}
+			
+            .top_menu .top_menu_li_sel{
+                color:orange;
+               border-bottom:2px solid orange;
+               
+            }
+            
+			.float_view{
+				margin: 2% auto;
+				background-color: white;
+				overflow: hidden;
+				padding: 8px;
+			}
+			.float_view img{
+				float: left;
+				width: 5%;
+				height: 5%;
+				background: no-repeat;
+				background-clip: content-box;
+				background-origin: content-box;
+				background-size: cover;
+				margin-left: 2%;
+				margin-top: inherit;
+			}
+			#float_view_sp{
+				
+				float: left;
+				margin-left: 1%;
+				font-size: 0.8em;
+                line-height: 2em;
+				margin-top: inherit;
+				background-color: white;
+				color: gray;
+			}
+			#float_view_btn{
+				float: right;
+				color: orange;
+				margin-right: 1%;
+				line-height: 2em;
+				margin-top: initial;
+				border:2px orange solid;
+				border-radius: 3px;
+				background-color: white;
+				padding: 3px 5px;
+			}
+			.mid_check_menu{
+				background-color: white;
+				overflow: hidden;
+				padding: 10px;
+			}
+		
+			.mid_check_menu_check,.mid_check_menu_img{
+				background-color: white;
+				float: left;
+				margin-left: 2%;
+				width: 20px;
+				height: 20px;
+				background-clip: content-box;
+				background-origin: content-box;
+				background-size: cover;
+				
+			}
+			#mid_check_menu_home{
+				background-color: white;
+				float: left;
+				margin-left: 1%;
+			}
+			.mid_check_menu button{
+				float: right;
+				margin-right: 5%;
+				border: none;
+				background-color: transparent;
+				color: deepskyblue;
+			}
+			.mid_ul_li{
+				list-style-type: none;
+				overflow: hidden;
+				margin: 2%;
+				background-color: white;
+			}
+			.mid_ul_li_check{
+				
+				background-color: white;
+				float: left;
+				margin-left: 2%;
+				width: 20px;
+				height: 20px;
+				background-clip: content-box;
+				background-origin: content-box;
+				background-size: cover;
+				margin: 10% 5%;
+			}
+			.mid_ul_li_img{
+				float: left;
+				background: white no-repeat;
+				background-clip: content-box;
+				background-origin: content-box;
+				background-size: cover;
+				border-radius: 5px;
+				vertical-align: middle;
+				margin:5% 0;
+			}
+			.mid_uli_des{
+				background-color: white;
+				float: left;
+				margin: 2% 5%;
+             
+			}
+			.mid_uli_des_title{
+				background: white;
+				font-size: 1.1em;
+                line-height:50px;
+               
+			}
+			.mid_uli_des_name{
+				background-color: white;
+               
+				color: dimgray;
+              
+            
+			}
+			.mid_uli_des_price,.mid_uli_des_pnum,.mid_uli_des_price span{
+				background-color: white;
+                 line-height:40px;
+				color: orange;
+			}
+			.foot_logo{
+				display: block;
+				margin: 0 auto;
+				background-color: transparent;
+				overflow: hidden;
+				text-align: left;
+			}
+			#foot_logo_img{
+				width: 40px;
+				height: 40px;
+                background: transparent url(../../../img/foot_logo.png) no-repeat;
+				background-origin: content-box;
+				background-clip: content-box;
+				background-size: cover;
+				float: left;
+				margin: 5% 0 5% 30%;
+               
+			}
+			#foot_logo_title{
+				/*background-color: #DB7093;*/
+				float: left;
+				margin: 5% 0;
+				color:gray;
+			}
+			#foot_logo_txt{
+				text-align: center;
+                color:gray;
+				margin: 0 0 60px 0;
+			}
+			.foot_menu{
+				background-color: white;
+				position: fixed;
+				z-index: 99;
+                height:50px;
+				bottom: 0px;
+				width: 100%;
+				overflow: hidden;
+                color:gray;
+			}
+            .select_on{
+			    background: white url(../../img/select_on.png) no-repeat;
+				background-clip: content-box;
+				background-origin: content-box;
+				background-size: cover;
+			}
+			.foot_menu_img{
+               
+				float: left;
+				width: 25px;
+				height: 25px;
+				margin:15px 10px;
+                padding:1%
+				background:white no-repeat;
+				background-clip: content-box;
+				background-origin:content-box ;
+				background-size: cover;
+				
+			}
+			#foot_menu_txt{
+				float: left;
+				background-color: white;
+                line-height:50px;
+				
+                padding:5px 1%;
+			}
+			.foot_menu_check_bill{
+				background-color: white;
+				/*overflow: hidden;*/
+				float:right;
+				padding: 1% 5%;
+				
+			}
+			#foot_menu_feenm{
+				background-color: white;
+			}
+			#foot_menu_totalFee{
+				/*overflow: hidden;*/
+				display: block;
+				background-color: white;
+			}
+		
+			.foot_menu_postfee{
+				display: block;
+				float: right;
+				background-color: white;
+			}
+			.foot_menu_btn{
+				background-color: gainsboro;
+				width: 80px;
+				height: 60px;
+				border: none;
+				float: right;
+			
+			}
+		</style>
+	</head>
+	<body>
+		<div class="top_menu">
+			<ul class="top_menu_ul">
+				<li class="top_menu_li_sel">购物车</li>
+				<li >购物记录</li>
+				<li >我的红包</li>
+				<li >我的返现</li>
+			</ul>
+		</div>
+		<div class="float_view">
+			<img  src="../../img/clear.png"/>
+			<span id="float_view_sp">
+				绑定手机号可以保存购物车中所有的商品
+			</span>
+			<button type="submit" id="float_view_btn">绑定手机</button>
+		</div>
+		<div class="middle">
+			<div class="mid_check_menu">
+                <img class="mid_check_menu_check selectImg" src="../../../img/select_off.png"/>
+                <img class="mid_check_menu_img" src="../../../img/foot_menu_home.png"/>
+				<span id="mid_check_menu_home">
+					新能源汽车商城
+				</span>
+				<button >编辑</button>
+			</div>
+			<ul>
+			<li class="mid_ul_li">
+                <img class="mid_ul_li_check selectImg" src="../../../img/select_off.png"/>
+                <img class="mid_ul_li_img" src="../../../img/13.jpg"/>
+				<div class="mid_uli_des">
+					<span class="mid_uli_des_title">
+						新能源汽车
+					</span>
+					<div class="mid_uli_des_name">汽车配件</div>
+					<div class="mid_uli_des_price"><span>￥</span><span class="mid_uli_des_pnum">200</span></div>
+				</div>
+			</li>
+			<li class="mid_ul_li">
+                <img class="mid_ul_li_check selectImg" src="../../../img/select_off.png"/>
+                <img class="mid_ul_li_img" src="../../../img/13.jpg"/>
+				<div class="mid_uli_des">
+					<span class="mid_uli_des_title">
+						新能源汽车
+					</span>
+					<div class="mid_uli_des_name">汽车配件</div>
+					<div class="mid_uli_des_price"><span>￥</span><span class="mid_uli_des_pnum">200</span></div>
+				</div>
+			</li>
+			<li class="mid_ul_li">
+                <img class="mid_ul_li_check selectImg" src="../../../img/select_off.png"/>
+                <img class="mid_ul_li_img" src="../../../img/13.jpg"/>
+				<div class="mid_uli_des">
+					<span class="mid_uli_des_title">
+						新能源汽车
+					</span>
+					<div class="mid_uli_des_name">汽车配件</div>
+					<div class="mid_uli_des_price"><span>￥</span><span class="mid_uli_des_pnum">200</span></div>
+				</div>
+			</li>
+			<li class="mid_ul_li">
+                <img class="mid_ul_li_check selectImg" src="../../../img/select_off.png"/>
+                <img class="mid_ul_li_img" src="../../../img/13.jpg"/>
+				<div class="mid_uli_des">
+					<span class="mid_uli_des_title">
+						新能源汽车
+					</span>
+					<div class="mid_uli_des_name">汽车配件</div>
+					<div class="mid_uli_des_price"><span>￥</span><span class="mid_uli_des_pnum">200</span></div>
+				</div>
+			</li>
+			</ul>
+		</div>
+		<div class="foot">
+			<div class="foot_logo">
+			<div id="foot_logo_img">
+				
+			</div>
+			<div id="foot_logo_title">
+				<div>上海强辰</div>
+				<span>shqiangchen.com</span>
+			</div>		
+		</div>
+		<div id="foot_logo_txt">上海强辰提供技术支持</div>
+		</div>
+		<div class="foot_menu">
+           	<img class="foot_menu_img selectimg" src="../../../img/select_off.png"/>
+			<span id="foot_menu_txt">
+				全选
+			</span>
+			<button class="foot_menu_btn">结算</button>
+			<span class="foot_menu_check_bill">
+				<div id="foot_menu_totalFee">
+					合计：￥<span id="foot_menu_feenm">0.00</span>
+				</div>
+				<div class="foot_menu_postfee">
+					不含运费
+				</div>
+			</span>
+			
+		</div>
+	</body>
+    <script type="text/javascript">
+		
+			$(".top_menu li").on("click",function(){
+                
+                //alert($(this).index());
+				$(this).addClass("top_menu_li_sel").siblings().removeClass("top_menu_li_sel");
+			});
+            
+           
+            $(".float_view img").click(function(){
+                
+                $(".float_view").hide();
+            
+            });
+        
+        $(".selectimg").click(function(e){
+//				alert("点击前"+$(this).attr("class"));
+				$(this).toggleClass("select_on");
+//				alert("点击后"+$(this).attr("class"));
+				if($(this).attr("class") == "foot_menu_img selectimg select_on"){//判断是否点击了全选按钮
+					$("#foot_menu_txt").text("取消");
+					$(".mid_ul_li_check").addClass("select_on");
+					index == 4;
+				}else if($(this).attr("class") == "foot_menu_img selectimg"){//判断是否撤消全选按钮
+						$("#foot_menu_txt").text("全选");
+						$(".mid_ul_li_check").removeClass("select_on");
+//						index == 0;
+					}else{
+						$("#foot_menu_txt").text("全选");
+						$(".foot_menu_img").removeClass("select_on");
+					}
+				if($(this).attr("class") == "mid_ul_li_check selectimg select_on"){
+					index ++;
+					
+				}else{
+					index --;
+				}
+				if(index == 4){
+					$("#foot_menu_txt").text("取消");
+					$(".foot_menu_img").addClass("select_on");
+					alert("全部桩"+$(".mid_ul_li_check").attr("class"));
+				}
+			});
+            
+		
+	</script>
+</html>

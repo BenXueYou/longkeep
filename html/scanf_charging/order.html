@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+		<title>实时支付</title>
+        
+	<script type="text/javascript" src="../JS/jquery-3.0.0.js" ></script>
+	<script type="text/javascript" src="../JS/jquery-3.0.0.min.js" ></script>
+        
+		<style type="text/css">
+			body{
+				background-color:#D3D3D3;
+			}
+			#top{
+				background-color:white ;
+				color: black;
+				padding:10px ;
+                margin-top:30px;
+				margin-bottom: 15px;
+			}
+			#middle{
+                display:none;
+				background-color:white ;
+				color: black;
+				margin-bottom: 15px;
+				padding:15px;
+			}
+            
+			#money{
+            
+                width:98%;
+                height:30px;
+                margin:1%;
+                text-align:center;
+            }
+            #money button{
+				/*margin: 10px 25%;*/
+				width: 20%;
+				height: 30px;
+                border-radius:5px;
+			}
+			
+			#middleDetail{
+				width: 60%;
+				margin: 10px 20%;
+			}
+            
+            #input{
+            
+                text-align:center;
+            }
+            
+			#pointOut{
+				color: darkorange;
+				padding: 15px;
+			}
+			#bottom{
+				width: 40%;
+				height: 50px;
+				margin:0 30%;
+				background-color: orange;
+				font-size:20px ;
+				color: white;
+                border-radius:5px;
+			}
+            
+            
+            #middleDetail input{
+            
+                height:30px;
+            }
+            
+            .active{
+                background:#299dff;
+            }
+			
+		</style>
+	</head>
+	<body>
+		<div id="top">
+			<p id="topTitle">请选择金额</p>
+			<div id="money">
+				<button class="btn" value="1">10元</button>
+				<button class="btn" value="1">20元</button>
+				<button class="btn" value="1">30元</button>
+                <button class="btn" id="btn4">自定义</button>
+			</div>
+		</div>
+		<div id="middle">
+			<p id="middleTitle">自定义金额</p>
+			<div id="middleDetail"><input id="input" placeholder="请输入金额（元）"></div>
+		</div>
+		<p id="pointOut">如电量已充满，或者其它意外情况而停止充电，导致充电未完成，系统会自动退回剩余充电金额到您的支付账户。</p>
+		<button id="bottom">确定</button>
+	</body>
+	<script type="text/javascript">
+        
+        var cpid;
+        function GetRequest() {
+            
+            //alert("hello world");
+          var url = location.search;   
+          var theRequest = new Object();  
+          if (url.indexOf("?") != -1) {  
+            var str = url.substr(1);  
+            console.log("111111111"+str);  
+            var strs= new Array();     
+             strs = str.split('&');  
+
+             cpid=strs[0].substring(5).trim();  
+
+              //alert("+++"+cpid);
+      	}  
+	}  
+	GetRequest();  
+        
+        
+        
+		$(document).ready(function()
+		{ 
+			
+			var index;
+			var money;
+			$("#bottom").click(function()
+			{ 
+				
+				switch(index){
+					case 0:
+						money = "10";
+						break;
+					case 1:
+						money = "20";
+						break;
+					case 2:
+						money = "30";
+                        break;
+					default:
+						money = document.getElementById("input").value;
+						break;
+				}
+				
+             
+				if(index >= 0){
+                    var mesg = "您选择的充电金额为:"+money+"元";
+                    //alert(mesg);
+					location.href='../html/smCharging.html?cpid='+cpid+'&money='+money;
+					
+                    
+				}else{
+					alert("你还未选择充电金额！");
+					
+				}
+				
+			});
+			
+		   $(".btn").on("click",function(){
+				$(this).addClass("active").siblings().removeClass("active");
+              var sbtitle=document.getElementById("middle");
+
+				if($(this).index() == "3"){
+					//alert($(this).index());
+					
+	     			if(sbtitle){
+	       				if(sbtitle.style.display=='block'){
+	        					
+	      			 	}else{
+	         				sbtitle.style.display='block';
+	       				}
+					}
+                }else{
+                    sbtitle.style.display='none';
+                }
+                index = $(this).index();
+				
+			})
+		});
+            
+        
+	</script>
+	
+</html>
